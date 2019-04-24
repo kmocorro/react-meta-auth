@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { async } from 'q';
 
 export const isBrowser = () => typeof window !== "undefined";
 
@@ -11,11 +12,11 @@ const setUser = user =>
     window.localStorage.setItem('metaUser', JSON.stringify(user));
 
 // login handler
-export const handleLogin = ({ username, password }) => {
+export const handleLogin = async ({ username, password }) => {
 
     console.log(username, password);
 
-    axios.post('http://10.3.10.209:8080/api/login', {username: username, password: password})
+    await axios.post('http://10.3.10.209:8080/api/login', {username: username, password: password})
     .then(res => {
         console.log(res);
     })
