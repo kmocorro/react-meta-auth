@@ -15,14 +15,14 @@ export const handleLogin = ({ username, password }) => {
 
     console.log(username, password);
 
-    axios.post('http://10.3.10.209:5050/api/login', {username: username, password: password})
+    axios.post('http://10.3.10.209:8080/api/login', {username: username, password: password})
     .then(function(response){
         console.log(response);
     })
     .catch(function (error) {
         console.log(error);
     });
-    
+
     if(username === `kevin` && password === `pass`){
         /*
         return setUser({
