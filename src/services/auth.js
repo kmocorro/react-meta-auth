@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { async } from 'q';
 
 export const isBrowser = () => typeof window !== "undefined";
 
@@ -15,22 +14,13 @@ const setUser = user =>
 export const handleLogin = async ({ username, password }) => {
 
     console.log(username, password);
+    let credentials = {username: username, password: password};
 
-    await axios.post('http://10.3.10.209:8080/api/login', {username: username, password: password})
-    .then(res => {
-        console.log(res);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-
-    if(username === `kevin` && password === `pass`){
-        /*
-        return setUser({
-            username: `kevin`,
-            name: `Kevin Mocorro`,
-            email:  `kevin.mocorro@sunpowercorp.com`,
-        }); */
+    try {
+        const response = await axios.post('http://10.3.10.209:8080/api/login', credentials);
+        console.log(response);
+    } catch(err){
+        console.log(err);
     }
 
     return false
