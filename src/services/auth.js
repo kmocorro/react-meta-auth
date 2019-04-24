@@ -16,8 +16,8 @@ export const handleLogin = ({ username, password }) => {
     console.log(username, password);
 
     axios.post('http://10.3.10.209:8080/api/login', {username: username, password: password})
-    .then(function(response){
-        console.log(response);
+    .then(res => {
+        console.log(res);
     })
     .catch(function (error) {
         console.log(error);
