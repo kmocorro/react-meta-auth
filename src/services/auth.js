@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const isBrowser = () => typeof window !== "undefined";
 
 export const getUser = () =>
@@ -11,17 +9,19 @@ const setUser = user =>
     window.localStorage.setItem('metaUser', JSON.stringify(user));
 
 // login handler
-export const handleLogin = async ({ username, password }) => {
+export const handleLogin = ({ username, password }) => {
 
-    console.log(username, password);
-    let credentials = {username: username, password: password};
-
-    try {
-        const response = await axios.post('http://10.3.10.209:8080/api/login', credentials);
-        console.log(response);
-    } catch(err){
-        console.log(err);
-    }
+    fetch('http://10.3.10.209:8080/api/login', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
 
     return false
 
